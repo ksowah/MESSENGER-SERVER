@@ -1,6 +1,5 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const { expressMiddleware } = require("@apollo/server/express4")
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { createServer } = require('http');
@@ -8,8 +7,6 @@ const { makeExecutableSchema } = require('@graphql-tools/schema');
 const { WebSocketServer } = require('ws');
 const { useServer } = require('graphql-ws/lib/use/ws');
 const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer')
-const { WebSocketServer } = require('ws');
-const { useServer } = require('graphql-ws/lib/use/ws');
 require('dotenv').config();
 
 const MongoDB = require('./config/db');

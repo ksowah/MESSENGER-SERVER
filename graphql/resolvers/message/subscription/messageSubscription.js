@@ -4,6 +4,6 @@ const pubsub = new PubSub();
 
 module.exports = {
     newMessage: {
-        subscribe: () => pubsub.asyncIterator('NEW_MESSAGE')
+        subscribe: () => pubsub.asyncIterator(['NEW_MESSAGE'])
     }
 };

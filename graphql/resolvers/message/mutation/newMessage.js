@@ -22,7 +22,7 @@ module.exports = {
 
         const message = await newMessage.save();
 
-        pubsub.publish('NEW_MESSAGE', {
+        pubsub.publish('NEW_MESSAGE', { 
             newMessage: message
         });
 
