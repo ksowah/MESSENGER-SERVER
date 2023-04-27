@@ -60,8 +60,8 @@ const serverCleanup = useServer({ schema }, wsServer);
   
     MongoDB();
 
-    const PORT = 4000 || process.env.PORT;
-  
+    const PORT = process.env.PORT || 4000; 
+
     httpServer.listen({ port: PORT }, () =>
       console.log(`Server running at http://localhost:${PORT}${server.graphqlPath}`)
     );

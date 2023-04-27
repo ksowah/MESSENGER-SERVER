@@ -3,7 +3,7 @@ const Authenticate = require("../../../../middleware/auth");
 const { pubsub } = require("../../../../utils/punsub");
 
 module.exports = {
-  newMessage: async (_, { messageInput: { body } }, context) => {
+  newMessage: async (_, { messageInput: { body, chatId } }, context) => {
     const user = Authenticate(context);
 
     if (body.trim() === "") {
@@ -12,16 +12,17 @@ module.exports = {
 
     const newMessage = new Message({
         body,
-        createdBy: user.id,
-        username: user.username,
-        createdAt: new Date().toISOString()
+        sender: user.id,
+        createdAt: new Date().toISOString(),
+        chatId,
     });
 
     const message = await newMessage.save();
    
     
-    await pubsub.publish("NEW_MESSAGE", {
-        newMessage: message,
+    // publish a new message to the chatId
+    pubsub.publish(`NEW_MESSAGE_${chatId}`, {
+      newMessage: message,
     });
 
 

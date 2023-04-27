@@ -1,15 +1,13 @@
 // const Authenticate = require("../../../../middleware/auth");
+const Authenticate = require("../../../../middleware/auth");
 const User = require("../../../../models/User");
 
-async function getUser(_, { ID }, context) {
+async function getMe(_, { ID }, context) {
  
-    // Authenticate(context)
-
+    
     try {
-        const user = await User.findById(ID)
-                .select("-password -token")
+        const user = Authenticate(context)
 
-        console.log("the user", user);
         return user;
     } catch (err) {
         throw new Error(err);
@@ -17,5 +15,5 @@ async function getUser(_, { ID }, context) {
 }
 
 module.exports = {
-    getUser,
+    getMe,
 };
