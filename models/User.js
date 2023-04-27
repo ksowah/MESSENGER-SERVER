@@ -1,6 +1,5 @@
 const { model, Schema } = require('mongoose');
 
-
 // lookup mongoose schema properties
 const userSchema = new Schema({
     username: {
@@ -21,6 +20,26 @@ const userSchema = new Schema({
         type: String,
         default: ""
     },
+    chats: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Chat",
+          default: [
+            {
+                id: "",
+                messages: [
+                    {
+                        id: "",
+                        sender: "",
+                        body: "",
+                        createdAt: "",
+                    }
+                ],
+                createdAt: "",
+            }
+          ],
+        },
+      ],
     token: String,
 });
 
