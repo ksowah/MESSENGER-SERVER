@@ -18,13 +18,11 @@ module.exports = {
     });
 
     const message = await newMessage.save();
-   
-    
+
     // publish a new message to the chatId
-    pubsub.publish(`NEW_MESSAGE_${chatId}`, {
+    pubsub.publish(`NEW_MESSAGE`, {
       newMessage: message,
     });
-
 
     return message;
   },
