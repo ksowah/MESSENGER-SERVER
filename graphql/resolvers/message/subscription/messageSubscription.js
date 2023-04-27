@@ -2,8 +2,7 @@ const { pubsub } = require("../../../../utils/punsub");
 
 module.exports = {
   newMessage: {
-    subscribe: () => pubsub.asyncIterator("NEW_MESSAGE")
+    // subscribe a new message based on the chatId
+    subscribe: (_, { chatId }) => pubsub.asyncIterator(`NEW_MESSAGE_${chatId}`),
   },
 };
-
-// console.log("newMessage subscription", pubsub.asyncIterator("NEW_MESSAGE").pubsub.ee._events);

@@ -8,7 +8,6 @@ type User {
     token: String!
     avatar: String!
     password: String!
-    chats: [Chat!]!
 }
 
 type ClientUser {
@@ -16,7 +15,6 @@ type ClientUser {
     username: String!
     email: String!
     avatar: String!
-    chats: [Chat!]!
 }
 
 type Message {
@@ -24,12 +22,13 @@ type Message {
     sender: ID!
     body: String!
     createdAt: String!
+    chatId: ID!
   }
 
 type Chat {
     id: ID!
-    messages: [Message!]!
     createdAt: String!
+    users: [ID!]!
   }
 
 input MessageInput {
@@ -55,7 +54,7 @@ input CreateChatInput {
 
 type Query {
     getUsers: [ClientUser]
-    getUser(ID: ID!): ClientUser
+    getMe: ClientUser
     getChats: [Chat!]!
 }
 
@@ -65,11 +64,10 @@ type Mutation {
     updateUser(ID: ID!, field: String!, value: String!): ClientUser!
     newMessage(messageInput: MessageInput): Message!
     createChat(createChatInput: CreateChatInput!): Chat!
-    Chat: String
 }
 
 type Subscription {
-    newMessage: Message!
+    newMessage(chatId: ID!): Message!
 }
 
 `

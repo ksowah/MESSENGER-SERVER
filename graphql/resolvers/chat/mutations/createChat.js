@@ -16,7 +16,6 @@ module.exports = {
 
     //   create new chat
       const users = [user.id, ...chatMembers];
-      console.log(users);
       const newChat = new Chat({ users });
       const chat = await newChat.save();
 
@@ -28,15 +27,4 @@ module.exports = {
 
       return chat;
     },
-
-  Chat: {
-    messages: async (parent) => {
-      const chat = await Chat.findById(parent.id).populate("messages");
-      return chat.messages;
-    },
-    users: async (parent) => {
-      const chat = await Chat.findById(parent.id).populate("users");
-      return chat.users;
-    },
-  },
 };

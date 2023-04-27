@@ -24,20 +24,6 @@ const userSchema = new Schema({
         {
           type: Schema.Types.ObjectId,
           ref: "Chat",
-          default: [
-            {
-                id: "",
-                messages: [
-                    {
-                        id: "",
-                        sender: "",
-                        body: "",
-                        createdAt: "",
-                    }
-                ],
-                createdAt: "",
-            }
-          ],
         },
       ],
     token: String,
