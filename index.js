@@ -27,6 +27,7 @@ const httpServer = createServer(app);
 const server = new ApolloServer({
     schema,
     context: ({ req }) => ({ req }),
+    persistedQueries: false,
     plugins: [
         // Proper shutdown for the HTTP server.
         ApolloServerPluginDrainHttpServer({ httpServer }),
@@ -62,7 +63,7 @@ const serverCleanup = useServer({ schema }, wsServer);
 
     const PORT = process.env.PORT || 4000; 
 
-    httpServer.listen({ port: PORT }, () =>
+    httpServer.listen({ port: process.env.PORT || 4000 }, () =>
       console.log(`Server running at http://localhost:${PORT}${server.graphqlPath}`)
     );
   }
