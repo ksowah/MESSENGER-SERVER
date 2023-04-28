@@ -8,12 +8,11 @@ module.exports = {
       () => pubsub.asyncIterator(["NEW_MESSAGE"]),
       (payload, variables) => {
         // convert payload.newMessage.chatId to string with only the id
-        payload.newMessage.chatId = new mongoose.Types.ObjectId(
-          payload.newMessage.chatId
-        ).toString();
+        const payloadChatId = new mongoose.Types.ObjectId(payload.newMessage.chatId).toString().trim();
+        const variablesChatId = variables.chatId.trim();
 
         // Filter the events by chat ID
-        return payload.newMessage.chatId === variables.chatId;
+        return payloadChatId === variablesChatId;
       }
     ),
   },

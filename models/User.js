@@ -20,12 +20,6 @@ const userSchema = new Schema({
         type: String,
         default: ""
     },
-    chats: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: "Chat",
-        },
-      ],
     token: String,
 });
 
