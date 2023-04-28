@@ -31,6 +31,12 @@ type Chat {
     users: [ID!]!
   }
 
+type MyChats {
+    id: ID!
+    createdAt: String!
+    users: [ClientUser!]!
+}
+
 input MessageInput {
     body: String!
     chatId: ID!
@@ -49,13 +55,13 @@ input LoginInput {
 }
 
 input CreateChatInput {
-    chatMembers: [ID!]!
+    chatMember: [ID!]!
   }
 
 type Query {
     getUsers: [ClientUser]
     getMe: ClientUser
-    getChats: [Chat!]!
+    getChats: [MyChats!]!
 }
 
 type Mutation {
